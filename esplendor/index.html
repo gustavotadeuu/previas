@@ -16,7 +16,6 @@ img{max-width:100%;display:block}
 a{color:var(--ouro)}
 h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;margin:0 0 .5em}
 h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
-.kicker{display:block;text-align:center;text-transform:uppercase;letter-spacing:.22em;font-size:.75rem;color:var(--ouro);font-weight:600;margin-bottom:.6rem}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:.8em 1.5em;border-radius:999px;background:var(--tinta);color:#fff;text-decoration:none;font:600 .98rem Inter;border:0;cursor:pointer}
 .btn:hover{background:#000}
 .btn-ouro{background:var(--ouro);color:#fff}.btn-ouro:hover{background:#9a773a}
@@ -44,15 +43,28 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 .hero-fotos img:first-child{grid-row:span 2}
 .sec{padding:clamp(3rem,8vw,5.5rem) clamp(1rem,4vw,2.5rem);max-width:1200px;margin:0 auto}
 .faixa{background:var(--creme2)}
-.servicos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
-.serv{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(80,60,20,.07);display:flex;flex-direction:column}
-.serv img,.serv .sem-foto{width:100%;aspect-ratio:4/3;object-fit:cover}
-.serv .sem-foto{display:grid;place-items:center;background:linear-gradient(135deg,#efe3cc,#d9bd84);font:600 1.5rem "Cormorant Garamond",serif;color:#5d4720;text-align:center;padding:1rem}
-.serv div{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
-.serv h3{font-size:1.55rem;margin:0}
-.serv p{margin:0;color:var(--mut);font-size:.95rem;flex:1}
-.serv button{align-self:flex-start;margin-top:.6rem;background:none;border:0;color:var(--ouro);font:600 .95rem Inter;cursor:pointer;padding:.4rem 0;min-height:44px}
-.serv button::after{content:" →"}
+.servicos{max-width:820px;margin:2rem auto 0}
+.g{background:#fff;border:1px solid #e6dccb;border-radius:12px;margin-bottom:.7rem;overflow:hidden}
+.g summary{display:flex;align-items:center;gap:1rem;padding:.9rem 1.1rem;cursor:pointer;list-style:none;min-height:76px}
+.g summary::-webkit-details-marker{display:none}
+.g summary:hover{background:#fdfaf4}
+.g summary img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}
+.g-tit{flex:1;display:flex;flex-direction:column}
+.g-tit strong{font:600 1.6rem/1.1 "Cormorant Garamond",Georgia,serif}
+.g-tit small{color:var(--mut);font-size:.88rem}
+.seta{width:10px;height:10px;border-right:2px solid var(--ouro);border-bottom:2px solid var(--ouro);transform:rotate(45deg);transition:transform .2s;margin-right:.4rem}
+.g[open] .seta{transform:rotate(-135deg)}
+.g[open] summary{border-bottom:1px solid #eee4d3}
+.g ul{list-style:none;margin:0;padding:0 1.1rem}
+.g li{display:flex;align-items:center;gap:1rem;padding:1rem 0}
+.g li+li{border-top:1px solid #f0e8da}
+.g li img{width:76px;height:76px;border-radius:10px;object-fit:cover;flex:none}
+.g li div{flex:1}
+.g li h3{font-size:1.35rem;margin:0 0 .15rem}
+.g li p{margin:0;color:var(--mut);font-size:.93rem}
+.g li button{flex:none;background:none;border:1px solid var(--ouro);color:#8a6a2f;border-radius:999px;font:600 .88rem Inter;padding:.55em 1em;cursor:pointer;min-height:42px}
+.g li button:hover{background:var(--ouro);color:#fff}
+@media(max-width:560px){.g li{flex-wrap:wrap}.g li img{width:64px;height:64px}.g li button{width:100%}}
 .galeria{columns:4 220px;column-gap:.8rem;margin-top:2rem}
 .galeria img{width:100%;border-radius:12px;margin-bottom:.8rem;break-inside:avoid}
 .legenda{text-align:center;color:var(--mut);font-size:.85rem;margin-top:.5rem}
@@ -116,14 +128,12 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 </section>
 
 <section class="faixa" id="servicos"><div class="sec">
-  <span class="kicker">O que fazemos</span>
   <h2>Serviços</h2>
   <div class="servicos" data-servicos></div>
-  <p class="legenda">Valores variam conforme o serviço — consulte pelo WhatsApp.</p>
+  <p class="legenda">Toque em uma categoria para ver os serviços. Valores pelo WhatsApp.</p>
 </div></section>
 
 <section class="sec" id="trabalhos">
-  <span class="kicker">Feito aqui</span>
   <h2>Nossos trabalhos</h2>
   <div class="galeria">
     <img src="img/penteado.webp" alt="Penteado" loading="lazy">
@@ -139,7 +149,6 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 </section>
 
 <section class="faixa" id="espaco"><div class="sec">
-  <span class="kicker">Venha conhecer</span>
   <h2>O espaço</h2>
   <div class="espaco">
     <figure><img src="img/fachada.webp" alt="Fachada do salão" loading="lazy"><figcaption>Fachada</figcaption></figure>
@@ -150,7 +159,6 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 </div></section>
 
 <section class="sec" id="avaliacoes">
-  <span class="kicker">Quem vem, volta</span>
   <h2>O que dizem as clientes</h2>
   <div class="avals">
     <figure class="aval"><span class="estrelas">★★★★★</span><blockquote>“O atendimento é impecável, e todas as meninas são maravilhosas, sempre atenciosas e acolhedoras.”</blockquote><cite>— donakajoias, no Google</cite></figure>
@@ -162,7 +170,6 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 
 <section class="faixa" id="agendar"><div class="sec agenda">
   <div>
-    <span class="kicker" style="text-align:left">Agendamento</span>
     <h2>Reserve seu horário</h2>
     <p>Escolha o serviço e o melhor dia. A mensagem vai pronta para o nosso WhatsApp e a gente confirma o horário com você.</p>
     <h3 style="font-size:1.5rem;margin-top:1.5rem">Horário de funcionamento</h3>
@@ -183,7 +190,6 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 
 <section class="sec local" id="contato">
   <div>
-    <span class="kicker" style="text-align:left">Contato</span>
     <h2>Como chegar</h2>
     <p>R. Maj. Oscár Campos, 492 – Centro<br>Rio Verde – GO</p>
     <p><a class="btn" data-mapa target="_blank" rel="noopener">Abrir no Google Maps</a></p>
@@ -208,21 +214,25 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
   const MAPA = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Esplendor Studio de Beleza, R. Maj. Oscár Campos, 492 - Centro, Rio Verde - GO");
   // 0 = domingo
   const HOR = { 0: null, 1: ["08:00", "19:00"], 2: ["08:00", "18:00"], 3: ["08:00", "18:00"], 4: ["08:00", "18:00"], 5: ["08:00", "18:00"], 6: ["08:00", "18:00"] };
-  const SERV = [
-    { nome: "Corte", desc: "Corte de cabelo feito por quem entende.", foto: "img/corte.webp" },
-    { nome: "Penteados", desc: "Penteados para festas e ocasiões especiais.", foto: "img/penteado.webp" },
-    { nome: "Maquiagem", desc: "Maquiagem para eventos e ocasiões especiais.", foto: "img/maquiagem.webp" },
-    { nome: "Manicure", desc: "Unhas das mãos bem-feitas e esmaltadas.", foto: "img/unhas-vermelho.webp" },
-    { nome: "Pedicure", desc: "Unhas dos pés bem cuidadas.", foto: "img/pedicure.webp" },
-    { nome: "Design de sobrancelhas", desc: "Sobrancelhas desenhadas para valorizar o seu rosto.", foto: "" }
+  const GRUPOS = [
+    { nome: "Cabelo", foto: "img/cachos.webp", itens: [
+      { nome: "Corte", desc: "Corte de cabelo feito por quem entende.", foto: "img/corte.webp" },
+      { nome: "Penteados", desc: "Penteados para festas e ocasiões especiais.", foto: "img/penteado.webp" } ] },
+    { nome: "Unhas", foto: "img/unhas-vermelho.webp", itens: [
+      { nome: "Manicure", desc: "Unhas das mãos bem-feitas e esmaltadas.", foto: "img/unhas-vermelho.webp" },
+      { nome: "Pedicure", desc: "Unhas dos pés bem cuidadas.", foto: "img/pedicure.webp" } ] },
+    { nome: "Maquiagem e sobrancelhas", foto: "img/maquiagem.webp", itens: [
+      { nome: "Maquiagem", desc: "Maquiagem para eventos e ocasiões especiais.", foto: "img/maquiagem.webp" },
+      { nome: "Design de sobrancelhas", desc: "Sobrancelhas desenhadas para valorizar o seu rosto.", foto: "" } ] }
   ];
+  const SERV = GRUPOS.flatMap((g) => g.itens);
   const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
   const zap = (m) => `https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`;
   $$("[data-mapa]").forEach((a) => (a.href = MAPA));
   $$("[data-zap]").forEach((a) => (a.href = zap("Olá! Vim pelo site e gostaria de agendar um horário.")));
   $("[data-ano]").textContent = new Date().getFullYear();
 
-  $("[data-servicos]").innerHTML = SERV.map((s) => `<article class="serv">${s.foto ? `<img src="${s.foto}" alt="${s.nome}" loading="lazy">` : `<div class="sem-foto"><img src="img/logo.webp" alt="" style="width:46%;aspect-ratio:1;border-radius:50%"></div>`}<div><h3>${s.nome}</h3><p>${s.desc}</p><button type="button" data-agendar="${s.nome}">Agendar ${s.nome.toLowerCase()}</button></div></article>`).join("");
+  $("[data-servicos]").innerHTML = GRUPOS.map((g) => `<details class="g"><summary><img src="${g.foto}" alt="" loading="lazy"><span class="g-tit"><strong>${g.nome}</strong><small>${g.itens.map((i) => i.nome).join(" · ")}</small></span><span class="seta" aria-hidden="true"></span></summary><ul>${g.itens.map((s) => `<li>${s.foto ? `<img src="${s.foto}" alt="${s.nome}" loading="lazy">` : ""}<div><h3>${s.nome}</h3><p>${s.desc}</p></div><button type="button" data-agendar="${s.nome}">Agendar</button></li>`).join("")}</ul></details>`).join("");
   $("[data-select]").innerHTML = SERV.map((s) => `<option>${s.nome}</option>`).join("") + "<option>Outro / mais de um serviço</option>";
   $("[data-servicos]").addEventListener("click", (e) => {
     const b = e.target.closest("[data-agendar]"); if (!b) return;
