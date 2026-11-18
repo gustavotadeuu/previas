@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Esplendor Studio de Beleza – Rio Verde</title>
+<meta name="description" content="Salão de beleza no centro de Rio Verde: cabelo, manicure, pedicure, maquiagem e design de sobrancelhas. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ouro:#b08a45;--ouro2:#d9bd84;--tinta:#1f1b16;--creme:#faf6ef;--creme2:#f2ebdf;--mut:#6f665b;--r:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--creme);color:var(--tinta);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--ouro)}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.1;margin:0 0 .5em}
+h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
+.kicker{display:block;text-align:center;text-transform:uppercase;letter-spacing:.22em;font-size:.75rem;color:var(--ouro);font-weight:600;margin-bottom:.6rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:.8em 1.5em;border-radius:999px;background:var(--tinta);color:#fff;text-decoration:none;font:600 .98rem Inter;border:0;cursor:pointer}
+.btn:hover{background:#000}
+.btn-ouro{background:var(--ouro);color:#fff}.btn-ouro:hover{background:#9a773a}
+.btn-linha{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta)}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+.topo{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:1rem;padding:.55rem clamp(1rem,4vw,2.5rem);background:rgba(250,246,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid #e8dfcf}
+.topo img{width:52px;height:52px;border-radius:50%}
+.topo nav{margin-left:auto;display:flex;gap:1.3rem}
+.topo nav a{color:var(--tinta);text-decoration:none;font-size:.93rem;font-weight:500}
+.topo .btn{min-height:42px;padding:.55em 1.1em}
+@media(max-width:820px){.topo nav{display:none}.topo .btn{margin-left:auto}}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding:clamp(2rem,6vw,4.5rem) clamp(1rem,4vw,2.5rem);max-width:1200px;margin:0 auto}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.6rem,7vw,4.4rem)}
+.hero h1 em{color:var(--ouro);font-style:italic}
+.hero p{font-size:1.1rem;color:var(--mut);max-width:520px}
+.status{display:inline-block;font-size:.82rem;font-weight:600;padding:.35em .9em;border-radius:999px;background:#f3e1df;color:#9b3b32;margin-bottom:1.2rem}
+.status.aberto{background:#e2f0e5;color:#2c6b3c}
+.cta{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.5rem 0 1.2rem}
+.nota{color:var(--mut);text-decoration:none;font-size:.95rem}
+.nota b{color:var(--tinta);font-size:1.15rem}
+.estrelas{color:var(--ouro);letter-spacing:2px}
+.hero-fotos{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:.8rem;height:clamp(340px,48vw,520px)}
+.hero-fotos img{width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.hero-fotos img:first-child{grid-row:span 2}
+.sec{padding:clamp(3rem,8vw,5.5rem) clamp(1rem,4vw,2.5rem);max-width:1200px;margin:0 auto}
+.faixa{background:var(--creme2)}
+.servicos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
+.serv{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(80,60,20,.07);display:flex;flex-direction:column}
+.serv img,.serv .sem-foto{width:100%;aspect-ratio:4/3;object-fit:cover}
+.serv .sem-foto{display:grid;place-items:center;background:linear-gradient(135deg,#efe3cc,#d9bd84);font:600 1.5rem "Cormorant Garamond",serif;color:#5d4720;text-align:center;padding:1rem}
+.serv div{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.serv h3{font-size:1.55rem;margin:0}
+.serv p{margin:0;color:var(--mut);font-size:.95rem;flex:1}
+.serv button{align-self:flex-start;margin-top:.6rem;background:none;border:0;color:var(--ouro);font:600 .95rem Inter;cursor:pointer;padding:.4rem 0;min-height:44px}
+.serv button::after{content:" →"}
+.galeria{columns:4 220px;column-gap:.8rem;margin-top:2rem}
+.galeria img{width:100%;border-radius:12px;margin-bottom:.8rem;break-inside:avoid}
+.legenda{text-align:center;color:var(--mut);font-size:.85rem;margin-top:.5rem}
+.espaco{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:2rem}
+.espaco figure{margin:0;position:relative}
+.espaco img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r)}
+.espaco figcaption{position:absolute;left:.8rem;bottom:.8rem;background:rgba(255,255,255,.92);padding:.25em .75em;border-radius:999px;font-size:.85rem;font-weight:600}
+@media(max-width:640px){.espaco{grid-template-columns:1fr}}
+.avals{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:2rem}
+.aval{background:#fff;border-radius:var(--r);padding:1.6rem;box-shadow:0 10px 30px rgba(80,60,20,.07)}
+.aval blockquote{margin:.6rem 0 1rem;font:500 1.35rem/1.35 "Cormorant Garamond",serif}
+.aval cite{font-style:normal;color:var(--mut);font-size:.9rem}
+.resumo-nota{text-align:center;margin-top:1.6rem}
+.agenda{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+@media(max-width:860px){.agenda{grid-template-columns:1fr}}
+.agenda h2{text-align:left}
+.agenda form{background:#fff;border-radius:var(--r);padding:1.5rem;box-shadow:0 10px 30px rgba(80,60,20,.08)}
+.campo{display:block;margin-bottom:1rem}
+.campo span{display:block;font-size:.88rem;font-weight:600;margin-bottom:.35rem}
+.campo input,.campo select,.campo textarea{width:100%;border:1px solid #ddd2bf;border-radius:10px;padding:.8em .9em;font:1rem Inter;background:#fffdf9;color:var(--tinta)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.agenda form .btn{width:100%}
+.mini{font-size:.85rem;color:var(--mut)}
+.horarios{list-style:none;padding:0;margin:1rem 0 1.5rem;max-width:380px}
+.horarios li{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid #e6dccb}
+.horarios li.hoje{font-weight:700;color:var(--ouro)}
+.local{display:grid;grid-template-columns:1fr 1.3fr;gap:2rem;align-items:start}
+@media(max-width:860px){.local{grid-template-columns:1fr}}
+.local h2{text-align:left}
+.local iframe{width:100%;min-height:360px;border:0;border-radius:var(--r)}
+.rodape{background:var(--tinta);color:#cfc6b8;text-align:center;padding:2.2rem 1rem 6rem;font-size:.9rem}
+.rodape img{width:64px;margin:0 auto 1rem;border-radius:50%}
+.rodape a{color:var(--ouro2)}
+.previa{font-size:.78rem;opacity:.65}
+.zap-fixo{position:fixed;right:1rem;bottom:1rem;z-index:50;display:flex;align-items:center;gap:.5rem;background:#1f8f4e;color:#fff;text-decoration:none;font-weight:600;padding:.85rem 1.15rem;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.zap-fixo svg{width:22px;height:22px;fill:#fff}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <img src="img/logo.webp" alt="Esplendor Studio de Beleza">
+  <nav aria-label="Seções"><a href="#servicos">Serviços</a><a href="#trabalhos">Trabalhos</a><a href="#espaco">O espaço</a><a href="#avaliacoes">Avaliações</a><a href="#contato">Contato</a></nav>
+  <a href="#agendar" class="btn">Agendar horário</a>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <span class="status" data-status></span>
+    <h1>Seu momento de cuidado, no <em>centro de Rio Verde.</em></h1>
+    <p>Cabelo, unhas, maquiagem e sobrancelhas em um espaço pensado para você se sentir bem. Atendimento atencioso do começo ao fim.</p>
+    <div class="cta"><a href="#agendar" class="btn btn-ouro">Agendar pelo WhatsApp</a><a href="#servicos" class="btn btn-linha">Ver serviços</a></div>
+    <a class="nota" data-mapa target="_blank" rel="noopener"><span class="estrelas">★★★★★</span> <b>5,0</b> no Google · 97 avaliações</a>
+  </div>
+  <div class="hero-fotos">
+    <img src="img/maquiagem.webp" alt="Maquiagem feita no salão">
+    <img src="img/interior.webp" alt="Interior do salão">
+    <img src="img/cachos.webp" alt="Cabelo cacheado finalizado no salão" style="object-position:center 35%">
+  </div>
+</section>
+
+<section class="faixa" id="servicos"><div class="sec">
+  <span class="kicker">O que fazemos</span>
+  <h2>Serviços</h2>
+  <div class="servicos" data-servicos></div>
+  <p class="legenda">Valores variam conforme o serviço — consulte pelo WhatsApp.</p>
+</div></section>
+
+<section class="sec" id="trabalhos">
+  <span class="kicker">Feito aqui</span>
+  <h2>Nossos trabalhos</h2>
+  <div class="galeria">
+    <img src="img/penteado.webp" alt="Penteado" loading="lazy">
+    <img src="img/unhas-rosa.webp" alt="Unhas em rosa" loading="lazy">
+    <img src="img/mechas.webp" alt="Cabelo loiro finalizado" loading="lazy">
+    <img src="img/unhas-vinho.webp" alt="Unhas em vinho" loading="lazy">
+    <img src="img/penteado2.webp" alt="Penteado com ondas" loading="lazy">
+    <img src="img/escova.webp" alt="Cabelo escuro finalizado" loading="lazy">
+    <img src="img/pedicure.webp" alt="Pedicure" loading="lazy">
+    <img src="img/esmaltes.webp" alt="Expositor de esmaltes do salão" loading="lazy">
+  </div>
+  <p class="legenda">Fotos reais de clientes e do salão.</p>
+</section>
+
+<section class="faixa" id="espaco"><div class="sec">
+  <span class="kicker">Venha conhecer</span>
+  <h2>O espaço</h2>
+  <div class="espaco">
+    <figure><img src="img/fachada.webp" alt="Fachada do salão" loading="lazy"><figcaption>Fachada</figcaption></figure>
+    <figure><img src="img/interior.webp" alt="Área de atendimento" loading="lazy"><figcaption>Atendimento</figcaption></figure>
+    <figure><img src="img/recepcao.webp" alt="Recepção" loading="lazy"><figcaption>Recepção</figcaption></figure>
+    <figure><img src="img/lavatorio.webp" alt="Lavatório" loading="lazy"><figcaption>Lavatório</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="avaliacoes">
+  <span class="kicker">Quem vem, volta</span>
+  <h2>O que dizem as clientes</h2>
+  <div class="avals">
+    <figure class="aval"><span class="estrelas">★★★★★</span><blockquote>“O atendimento é impecável, e todas as meninas são maravilhosas, sempre atenciosas e acolhedoras.”</blockquote><cite>— donakajoias, no Google</cite></figure>
+    <figure class="aval"><span class="estrelas">★★★★★</span><blockquote>“Excelência técnica, profissionalismo e atenção aos detalhes.”</blockquote><cite>— Cydia R., no Google</cite></figure>
+    <figure class="aval"><span class="estrelas">★★★★★</span><blockquote>“O cappuccino é divino!”</blockquote><cite>— donakajoias, no Google</cite></figure>
+  </div>
+  <p class="resumo-nota"><a data-mapa target="_blank" rel="noopener">Ver as 97 avaliações no Google →</a></p>
+</section>
+
+<section class="faixa" id="agendar"><div class="sec agenda">
+  <div>
+    <span class="kicker" style="text-align:left">Agendamento</span>
+    <h2>Reserve seu horário</h2>
+    <p>Escolha o serviço e o melhor dia. A mensagem vai pronta para o nosso WhatsApp e a gente confirma o horário com você.</p>
+    <h3 style="font-size:1.5rem;margin-top:1.5rem">Horário de funcionamento</h3>
+    <ul class="horarios" data-horarios></ul>
+  </div>
+  <form data-form>
+    <label class="campo"><span>Seu nome</span><input name="nome" required autocomplete="name"></label>
+    <label class="campo"><span>Serviço</span><select name="servico" required data-select></select></label>
+    <div class="duas">
+      <label class="campo"><span>Dia</span><input type="date" name="dia" required data-dia></label>
+      <label class="campo"><span>Período</span><select name="turno"><option>Manhã</option><option>Tarde</option><option>Qualquer horário</option></select></label>
+    </div>
+    <label class="campo"><span>Observação (opcional)</span><textarea name="obs" rows="2"></textarea></label>
+    <button class="btn btn-ouro" type="submit">Enviar pedido de horário</button>
+    <p class="mini" data-aviso-dia></p>
+  </form>
+</div></section>
+
+<section class="sec local" id="contato">
+  <div>
+    <span class="kicker" style="text-align:left">Contato</span>
+    <h2>Como chegar</h2>
+    <p>R. Maj. Oscár Campos, 492 – Centro<br>Rio Verde – GO</p>
+    <p><a class="btn" data-mapa target="_blank" rel="noopener">Abrir no Google Maps</a></p>
+    <p>WhatsApp: <a data-zap target="_blank" rel="noopener">(64) 9303-0964</a><br>Instagram: <a href="https://instagram.com/esplendorstudiodebeleza" target="_blank" rel="noopener">@esplendorstudiodebeleza</a></p>
+  </div>
+  <iframe title="Mapa do salão" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Esplendor%20Studio%20de%20Beleza%2C%20R.%20Maj.%20Osc%C3%A1r%20Campos%2C%20492%20-%20Centro%2C%20Rio%20Verde%20-%20GO&output=embed"></iframe>
+</section>
+</main>
+
+<footer class="rodape">
+  <img src="img/logo.webp" alt="">
+  <p><strong>Esplendor Studio de Beleza</strong> · R. Maj. Oscár Campos, 492 – Centro, Rio Verde – GO</p>
+  <p class="previa">Prévia de site criada para apresentação · <span data-ano></span></p>
+</footer>
+
+<a class="zap-fixo" data-zap target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg><span>Agendar</span></a>
+
+<script>
+(function(){
+  "use strict";
+  const ZAP = "556493030964";
+  const MAPA = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Esplendor Studio de Beleza, R. Maj. Oscár Campos, 492 - Centro, Rio Verde - GO");
+  // 0 = domingo
+  const HOR = { 0: null, 1: ["08:00", "19:00"], 2: ["08:00", "18:00"], 3: ["08:00", "18:00"], 4: ["08:00", "18:00"], 5: ["08:00", "18:00"], 6: ["08:00", "18:00"] };
+  const SERV = [
+    { nome: "Corte", desc: "Corte de cabelo feito por quem entende.", foto: "img/corte.webp" },
+    { nome: "Penteados", desc: "Penteados para festas e ocasiões especiais.", foto: "img/penteado.webp" },
+    { nome: "Maquiagem", desc: "Maquiagem para eventos e ocasiões especiais.", foto: "img/maquiagem.webp" },
+    { nome: "Manicure", desc: "Unhas das mãos bem-feitas e esmaltadas.", foto: "img/unhas-vermelho.webp" },
+    { nome: "Pedicure", desc: "Unhas dos pés bem cuidadas.", foto: "img/pedicure.webp" },
+    { nome: "Design de sobrancelhas", desc: "Sobrancelhas desenhadas para valorizar o seu rosto.", foto: "" }
+  ];
+  const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+  const zap = (m) => `https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`;
+  $$("[data-mapa]").forEach((a) => (a.href = MAPA));
+  $$("[data-zap]").forEach((a) => (a.href = zap("Olá! Vim pelo site e gostaria de agendar um horário.")));
+  $("[data-ano]").textContent = new Date().getFullYear();
+
+  $("[data-servicos]").innerHTML = SERV.map((s) => `<article class="serv">${s.foto ? `<img src="${s.foto}" alt="${s.nome}" loading="lazy">` : `<div class="sem-foto"><img src="img/logo.webp" alt="" style="width:46%;aspect-ratio:1;border-radius:50%"></div>`}<div><h3>${s.nome}</h3><p>${s.desc}</p><button type="button" data-agendar="${s.nome}">Agendar ${s.nome.toLowerCase()}</button></div></article>`).join("");
+  $("[data-select]").innerHTML = SERV.map((s) => `<option>${s.nome}</option>`).join("") + "<option>Outro / mais de um serviço</option>";
+  $("[data-servicos]").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-agendar]"); if (!b) return;
+    $("[data-select]").value = b.dataset.agendar;
+    $("#agendar").scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => $("[data-form] [name=nome]").focus({ preventScroll: true }), 600);
+  });
+
+  function agora() {
+    const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+    const g = (t) => p.find((x) => x.type === t).value;
+    return { dia: { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[g("weekday")], min: (+g("hour") % 24) * 60 + +g("minute") };
+  }
+  const m = (h) => +h.slice(0, 2) * 60 + +h.slice(3);
+  const NOMES = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  function status() {
+    const { dia, min } = agora(), h = HOR[dia];
+    if (h && min >= m(h[0]) && min < m(h[1])) return [true, "Aberto agora · até " + h[1]];
+    for (let i = 0; i < 8; i++) {
+      const d = (dia + i) % 7, x = HOR[d]; if (!x) continue;
+      if (i === 0 && min < m(x[0])) return [false, "Fechado · abre hoje às " + x[0]];
+      if (i === 1) return [false, "Fechado · abre amanhã às " + x[0]];
+      if (i > 1) return [false, "Fechado · abre " + NOMES[d].toLowerCase() + " às " + x[0]];
+    }
+    return [false, "Fechado"];
+  }
+  const st = status(); $("[data-status]").textContent = st[1]; $("[data-status]").classList.toggle("aberto", st[0]);
+  const hoje = agora().dia;
+  $("[data-horarios]").innerHTML = [1, 2, 3, 4, 5, 6, 0].map((d) => `<li class="${d === hoje ? "hoje" : ""}"><span>${NOMES[d]}</span><span>${HOR[d] ? HOR[d].join(" – ") : "Fechado"}</span></li>`).join("");
+
+  const inpDia = $("[data-dia]");
+  const iso = (dt) => new Date(dt.getTime() - dt.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  inpDia.min = iso(new Date());
+  inpDia.addEventListener("change", () => {
+    const d = new Date(inpDia.value + "T12:00:00").getDay();
+    $("[data-aviso-dia]").textContent = HOR[d] ? "" : "Aos domingos o salão não abre. Escolha outro dia.";
+    inpDia.setCustomValidity(HOR[d] ? "" : "Domingo fechado");
+  });
+  $("[data-form]").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const [a, mm, dd] = f.get("dia").split("-");
+    const dia = NOMES[new Date(f.get("dia") + "T12:00:00").getDay()].toLowerCase();
+    const linhas = ["Olá! Gostaria de agendar pelo site:", "", `Nome: ${f.get("nome")}`, `Serviço: ${f.get("servico")}`, `Dia: ${dia}, ${dd}/${mm}/${a}`, `Período: ${f.get("turno")}`];
+    if (f.get("obs")) linhas.push(`Obs.: ${f.get("obs")}`);
+    window.open(zap(linhas.join("\n")), "_blank");
+  });
+})();
+</script>
+</body>
+</html>
