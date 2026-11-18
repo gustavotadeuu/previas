@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cardápio</title>
+<meta name="description" content="Cardápio digital e pedidos pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cor:#e0632a;--cor-txt:#111;--bg:#0e0e0e;--bg2:#171717;--bg3:#222;--txt:#f3f3f3;--mut:#a9a9a9;--r:14px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--cor)}
+h1,h2,h3{font-family:"Archivo Black",Inter,sans-serif;font-weight:400;letter-spacing:.2px;line-height:1.15;margin:0 0 .6em}
+h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+h2::after{content:"";display:block;width:48px;height:4px;background:var(--cor);border-radius:2px;margin-top:.35em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4em;background:var(--cor);color:var(--cor-txt);border:0;border-radius:999px;padding:.85em 1.4em;font:700 1rem Inter,sans-serif;text-decoration:none;cursor:pointer;min-height:48px}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-linha{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+:focus-visible{outline:3px solid var(--cor);outline-offset:2px}
+
+.topo{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:1rem;padding:.6rem clamp(1rem,4vw,2.5rem);background:rgba(14,14,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid #222}
+.marca{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;font-weight:700}
+.marca img{width:46px;height:46px;border-radius:10px;object-fit:contain;background:#000}
+.menu-topo{margin-left:auto;display:flex;gap:1.2rem}
+.menu-topo a{color:#ddd;text-decoration:none;font-weight:600;font-size:.95rem}
+.btn-sacola{background:var(--cor);color:var(--cor-txt);border:0;border-radius:999px;padding:.55em 1em;font:700 .95rem Inter;cursor:pointer;min-height:44px}
+.btn-sacola span{background:var(--cor-txt);color:var(--cor);border-radius:999px;padding:0 .5em;margin-left:.3em}
+@media(max-width:640px){.menu-topo{display:none}.btn-sacola{margin-left:auto}.marca span{font-size:.95rem}}
+
+.hero{position:relative;min-height:min(78vh,640px);display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);filter:brightness(.42) saturate(1.1)}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+@media(max-width:640px){.hero-bg{grid-template-columns:repeat(2,1fr)}.hero-bg img:nth-child(n+5){display:none}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 30%,var(--bg) 100%)}
+.hero-in{position:relative;z-index:1;padding:clamp(1.5rem,6vw,4rem);max-width:760px}
+.hero h1{font-size:clamp(2rem,6.5vw,3.6rem)}
+.hero h1 span{color:var(--cor)}
+.hero p{font-size:1.1rem;color:#e6e6e6;max-width:560px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.2rem 0}
+.status{display:inline-block;font-size:.85rem;font-weight:700;padding:.35em .8em;border-radius:999px;background:#3a1a1a;color:#ff9b9b;margin-bottom:1rem}
+.status.aberto{background:#123321;color:#7be3a4}
+.nota{color:#ddd;text-decoration:none;font-size:.95rem}
+.nota b{color:var(--cor);font-size:1.1rem}
+.nota::before{content:"★ ";color:var(--cor)}
+
+.sec{padding:clamp(2.5rem,7vw,4.5rem) clamp(1rem,4vw,2.5rem);max-width:1180px;margin:0 auto}
+.vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,44%),1fr));gap:.8rem}
+@media(max-width:480px){.vit figcaption{flex-direction:column;align-items:flex-start;gap:0;font-size:.85rem;padding:2rem .6rem .6rem}}
+.vit{margin:0;position:relative;border-radius:var(--r);overflow:hidden;background:var(--bg2);aspect-ratio:1}
+.vit img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.vit:hover img{transform:scale(1.04)}
+.vit figcaption{position:absolute;inset:auto 0 0;padding:2.2rem .9rem .8rem;background:linear-gradient(transparent,rgba(0,0,0,.85));font-weight:700;display:flex;justify-content:space-between;gap:.5rem;align-items:flex-end}
+.vit figcaption span{color:var(--cor);white-space:nowrap}
+
+.abas{position:sticky;top:64px;z-index:20;display:flex;gap:.5rem;overflow-x:auto;padding:.7rem 0;background:var(--bg);scrollbar-width:none}
+.abas::-webkit-scrollbar{display:none}
+.abas button{flex:none;background:var(--bg3);color:#ddd;border:1px solid #333;border-radius:999px;padding:.5em 1em;font:600 .9rem Inter;cursor:pointer;min-height:40px}
+.abas button.on{background:var(--cor);color:var(--cor-txt);border-color:var(--cor)}
+.busca input{width:100%;margin:.4rem 0 1.4rem;background:var(--bg2);border:1px solid #333;color:#fff;border-radius:12px;padding:.85em 1em;font:1rem Inter}
+.cat{margin-bottom:2.2rem;scroll-margin-top:130px}
+.cat h3{font-size:1.25rem;color:var(--cor);margin-bottom:.3em}
+.cat-obs{color:var(--mut);font-size:.9rem;margin:0 0 .8rem}
+.itens{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:.8rem}
+@media(max-width:400px){.itens{grid-template-columns:1fr}}
+.item{position:relative;display:flex;gap:.9rem;align-items:stretch;text-align:left;background:var(--bg2);border:1px solid #262626;border-radius:var(--r);padding:.9rem;color:inherit;font:inherit;cursor:pointer;transition:border-color .2s}
+.item:hover{border-color:var(--cor)}
+.item-txt{flex:1;display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.item small{color:var(--mut);font-size:.86rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.preco{margin-top:auto;font-weight:700;color:var(--cor)}
+.item img{width:104px;height:104px;border-radius:10px;object-fit:cover;flex:none}
+.mais{position:absolute;right:.6rem;bottom:.6rem;width:30px;height:30px;border-radius:50%;background:var(--cor);color:var(--cor-txt);display:grid;place-items:center;font-weight:700;font-size:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.vazio-busca{color:var(--mut)}
+.sem-cardapio{background:var(--bg2);border:1px dashed #444;border-radius:var(--r);padding:1.5rem;max-width:620px}
+
+.como ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.como li{background:var(--bg2);border-radius:var(--r);padding:1.2rem;display:flex;gap:.8rem;align-items:center;font-weight:600}
+.como li b{flex:none;width:38px;height:38px;border-radius:50%;background:var(--cor);color:var(--cor-txt);display:grid;place-items:center}
+
+.visite{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:800px){.visite{grid-template-columns:1fr}}
+.visite h3{font-size:1.05rem;margin:1.6rem 0 .5rem}
+.visite iframe{width:100%;min-height:380px;border:0;border-radius:var(--r);filter:grayscale(.3)}
+.end{font-size:1.05rem}
+.horarios{list-style:none;padding:0;margin:0;max-width:360px}
+.horarios li{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid #252525}
+
+.rodape{text-align:center;padding:2rem 1rem 6rem;color:var(--mut);font-size:.9rem;border-top:1px solid #222}
+.previa{font-size:.8rem;opacity:.7}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.7rem;transform:translateY(120%);transition:transform .3s}
+.barra.on{transform:none}
+.barra button{width:100%;max-width:640px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;background:var(--cor);color:var(--cor-txt);border:0;border-radius:14px;padding:1rem 1.2rem;font:600 1rem Inter;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+.aviso{position:fixed;left:50%;top:80px;transform:translate(-50%,-20px);opacity:0;background:#fff;color:#111;padding:.6em 1.1em;border-radius:999px;font-weight:600;z-index:100;transition:.25s;pointer-events:none}
+.aviso.on{opacity:1;transform:translate(-50%,0)}
+
+.modal{border:0;padding:0;border-radius:18px;background:var(--bg2);color:var(--txt);width:min(520px,94vw);max-height:90vh;overflow:auto}
+.modal::backdrop{background:rgba(0,0,0,.7)}
+.modal h3{padding:1.2rem 1.2rem 0}
+.x{position:sticky;float:right;top:.6rem;margin:.6rem .6rem 0 0;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:1.4rem;cursor:pointer}
+.mi-foto img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.mi-corpo{padding:1rem 1.2rem}
+.mi-corpo h3{padding:0}
+.mi-desc{color:var(--mut)}
+.mi-add h4{margin:1rem 0 .5rem}.mi-add small{color:var(--mut);font-weight:400}
+.chk{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;border-bottom:1px solid #262626;cursor:pointer}
+.chk span{flex:1}.chk b{color:var(--cor);font-weight:600;font-size:.9rem}
+.chk input{width:20px;height:20px;accent-color:var(--cor)}
+.campo{display:block;margin:.8rem 0}
+.campo span{display:block;font-size:.88rem;font-weight:600;margin-bottom:.3rem}
+.campo input,.campo select,.campo textarea{width:100%;background:var(--bg);border:1px solid #333;color:#fff;border-radius:10px;padding:.75em .9em;font:1rem Inter}
+.mi-pe{position:sticky;bottom:0;display:flex;gap:.8rem;padding:1rem 1.2rem;background:var(--bg2);border-top:1px solid #262626}
+.mi-pe .btn{flex:1}
+.qt{display:inline-flex;align-items:center;gap:.2rem;background:var(--bg);border-radius:999px;padding:.2rem}
+.qt button{width:32px;height:32px;border-radius:50%;border:0;background:var(--bg3);color:#fff;font-size:1.1rem;cursor:pointer}
+.qt.grande button{width:42px;height:42px}
+.mi-qtd{min-width:1.8em;text-align:center;font-weight:700}
+.lista-sacola{list-style:none;margin:0;padding:.5rem 1.2rem}
+.lista-sacola li{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid #262626}
+.lista-sacola small{display:block;color:var(--mut)}
+.li-dir{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.lista-sacola .vazio{color:var(--mut);justify-content:center}
+.tot{display:flex;justify-content:space-between;padding:1rem 1.2rem;font-size:1.1rem}
+.tot b{color:var(--cor)}
+#sacola .finalizar{width:calc(100% - 2.4rem);margin:0 1.2rem 1.2rem}
+#checkout form{padding:0 1.2rem 1.2rem}
+#checkout form .tot{padding:1rem 0 .2rem}
+#checkout .btn{width:100%}
+.opcoes{border:0;padding:0;margin:.8rem 0;display:flex;gap:1.2rem;flex-wrap:wrap}
+.opcoes legend{font-size:.88rem;font-weight:600;margin-bottom:.4rem}
+.opcoes label{display:flex;gap:.4rem;align-items:center;cursor:pointer}
+.opcoes input{accent-color:var(--cor);width:18px;height:18px}
+.duas{display:grid;grid-template-columns:1fr 2fr;gap:.6rem}
+.mini{color:var(--mut);font-size:.85rem;margin:.2rem 0 1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+</style>
+<script>
+/* Brutus Burger – Uberaba. Dados do Instagram oficial e do Google (nov/2026).
+   Cardápio com preços ainda não publicado online: a seção de cardápio fica pronta para receber os itens. */
+window.LOJA = {
+  slug: "brutus-burger",
+  nome: "Brutus Burger",
+  cidade: "Uberaba",
+  whatsapp: "5534991180842",
+  instagram: "brutusburgerhamburgueria",
+  endereco: "Av. Orlando Rodrigues da Cunha, 1020 – Uberaba – MG",
+  mapa: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Brutus Burger Hamburgueria, Av. Orlando Rodrigues da Cunha, 1020, Uberaba - MG"),
+  logo: "img/logo.webp",
+  cor: "#f5c518",
+  corTexto: "#111",
+  slogan: "Hambúrguer de respeito <span>em Uberaba.</span>",
+  sub: "Burgers caprichados, batata com bacon e cheddar e combos para matar a fome de verdade. Peça direto pelo nosso WhatsApp.",
+  capa: ["img/b1.webp", "img/b3.webp", "img/b4.webp", "img/b2.webp", "img/b5.webp", "img/b1.webp", "img/b4.webp", "img/b3.webp"],
+  horarios: { 0: ["18:00", "23:00"], 1: ["18:00", "23:00"], 2: ["18:00", "23:00"], 3: ["18:00", "23:00"], 4: ["18:00", "23:00"], 5: ["18:00", "23:30"], 6: ["18:00", "23:30"] },
+  pagamentos: [],
+  google: { nota: "4,7", qtd: 140 },
+  nomeVitrine: "Direto da nossa chapa",
+  vitrine: [
+    { nome: "Burger com bacon", foto: "img/b1.webp" },
+    { nome: "Batata com bacon e cheddar", foto: "img/b3.webp" },
+    { nome: "Burger com bacon e salada", foto: "img/b4.webp" },
+    { nome: "Burger com fritas", foto: "img/b5.webp" }
+  ]
+};
+window.CARDAPIO = [];
+window.ADICIONAIS = [];
+
+</script>
+<script>
+/* Prévia de cardápio digital – lógica comum (carrinho + pedido pelo WhatsApp) */
+(function () {
+  "use strict";
+  const L = window.LOJA;
+  const CATS = window.CARDAPIO || [];
+  const ADD = window.ADICIONAIS || [];
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const brl = (v) => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const CHAVE = "carrinho_" + L.slug;
+  let sacola = [];
+  try { sacola = JSON.parse(localStorage.getItem(CHAVE) || "[]"); } catch (e) { sacola = []; }
+  const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(sacola)); } catch (e) {} };
+
+  /* ---------- horário ---------- */
+  function agoraSP() {
+    const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+    const g = (t) => p.find((x) => x.type === t).value;
+    const dias = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return { dia: dias[g("weekday")], min: (parseInt(g("hour"), 10) % 24) * 60 + parseInt(g("minute"), 10) };
+  }
+  const toMin = (h) => { const [a, b] = h.split(":").map(Number); return a * 60 + b; };
+  function statusLoja() {
+    const { dia, min } = agoraSP();
+    const hoje = L.horarios[dia];
+    if (hoje && min >= toMin(hoje[0]) && min < toMin(hoje[1])) return { aberto: true, txt: "Aberto agora · até " + hoje[1] };
+    for (let i = 0; i < 8; i++) {
+      const d = (dia + i) % 7, h = L.horarios[d];
+      if (!h) continue;
+      if (i === 0 && min < toMin(h[0])) return { aberto: false, txt: "Fechado · abre hoje às " + h[0] };
+      if (i === 1) return { aberto: false, txt: "Fechado · abre amanhã às " + h[0] };
+      if (i > 1) return { aberto: false, txt: "Fechado · abre " + ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"][d] + " às " + h[0] };
+    }
+    return { aberto: false, txt: "Fechado" };
+  }
+  function pintarStatus() {
+    const s = statusLoja();
+    $$("[data-status]").forEach((el) => { el.textContent = s.txt; el.classList.toggle("aberto", s.aberto); });
+  }
+
+  /* ---------- montagem ---------- */
+  function montarTopo() {
+    document.title = L.nome + " – " + L.cidade;
+    $$("[data-nome]").forEach((e) => (e.textContent = L.nome));
+    $$("[data-logo]").forEach((e) => { e.src = L.logo; e.alt = "Logo " + L.nome; });
+    $$("[data-endereco]").forEach((e) => (e.textContent = L.endereco));
+    $$("[data-mapa]").forEach((e) => (e.href = L.mapa));
+    $$("[data-insta]").forEach((e) => { e.href = "https://instagram.com/" + L.instagram; e.textContent = "@" + L.instagram; });
+    $$("[data-zap]").forEach((e) => (e.href = zapLink("Olá! Vim pelo site e quero fazer um pedido.")));
+    $("[data-slogan]").innerHTML = L.slogan;
+    $("[data-sub]").textContent = L.sub;
+    $("[data-capa]").innerHTML = L.capa.map((c) => `<img src="${c}" alt="">`).join("");
+    $("[data-pagamentos]").textContent = L.pagamentos.length ? L.pagamentos.join(" · ") : "Consulte as formas de pagamento no WhatsApp.";
+    const dn = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    $("[data-horarios]").innerHTML = [1, 2, 3, 4, 5, 6, 0].map((d) => `<li><span>${dn[d]}</span><b>${L.horarios[d] ? L.horarios[d].join(" – ") : "Fechado"}</b></li>`).join("");
+    $("[data-nota]").innerHTML = `<b>${L.google.nota}</b> no Google · ${L.google.qtd} avaliações`;
+    $("[data-nota]").href = L.mapa;
+    $("[data-mapa-embed]").src = "https://www.google.com/maps?q=" + encodeURIComponent(L.nome + ", " + L.endereco) + "&output=embed";
+    if (L.nomeVitrine) $("#destaques h2").textContent = L.nomeVitrine;
+    $("[data-vitrine]").innerHTML = L.vitrine.map((v) => `<figure class="vit"><img src="${v.foto}" alt="${esc(v.nome)}" loading="lazy"><figcaption>${esc(v.nome)}${v.preco ? `<span>${brl(v.preco)}</span>` : ""}</figcaption></figure>`).join("");
+  }
+
+  function montarCardapio() {
+    const sec = $("#cardapio");
+    if (!CATS.length) { sec.classList.add("sem-precos"); $("[data-semcardapio]").hidden = false; $(".abas").hidden = true; $(".busca").hidden = true; $(".como").hidden = true; $$(".btn-sacola").forEach((b) => (b.hidden = true)); return; }
+    $(".abas").innerHTML = CATS.map((c) => `<button type="button" data-aba="${c.id}">${esc(c.nome)}</button>`).join("");
+    $("[data-lista]").innerHTML = CATS.map((c) => `
+      <section class="cat" id="cat-${c.id}">
+        <h3>${esc(c.nome)}</h3>${c.obs ? `<p class="cat-obs">${esc(c.obs)}</p>` : ""}
+        <div class="itens">${c.itens.map((it, i) => `
+          <button type="button" class="item" data-item="${c.id}:${i}" data-busca="${esc((it.nome + " " + (it.desc || "")).toLowerCase())}">
+            <div class="item-txt"><strong>${esc(it.nome)}</strong>${it.desc ? `<small>${esc(it.desc)}</small>` : ""}<span class="preco">${brl(it.preco)}</span></div>
+            ${it.foto ? `<img src="${it.foto}" alt="" loading="lazy">` : ""}
+            <span class="mais" aria-hidden="true">+</span>
+          </button>`).join("")}</div>
+      </section>`).join("");
+    $(".abas").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-aba]"); if (!b) return;
+      const alvo = $("#cat-" + b.dataset.aba);
+      window.scrollTo({ top: alvo.getBoundingClientRect().top + scrollY - 120, behavior: "smooth" });
+    });
+    $("[data-lista]").addEventListener("click", (e) => { const b = e.target.closest("[data-item]"); if (b) abrirItem(b.dataset.item); });
+    $(".busca input").addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      $$(".item").forEach((it) => (it.hidden = q && !it.dataset.busca.includes(q)));
+      $$(".cat").forEach((c) => (c.hidden = !$$(".item", c).some((i) => !i.hidden)));
+      $("[data-vazio]").hidden = $$(".cat").some((c) => !c.hidden);
+    });
+    const obs = new IntersectionObserver((ents) => ents.forEach((en) => {
+      if (en.isIntersecting) $$(".abas button").forEach((b) => b.classList.toggle("on", "cat-" + b.dataset.aba === en.target.id));
+    }), { rootMargin: "-130px 0px -65% 0px" });
+    $$(".cat").forEach((c) => obs.observe(c));
+  }
+
+  /* ---------- item ---------- */
+  let atual = null;
+  function abrirItem(ref) {
+    const [cid, i] = ref.split(":"), cat = CATS.find((c) => c.id === cid), it = cat.itens[+i];
+    atual = { it, cat, qtd: 1 };
+    const m = $("#modal-item");
+    $(".mi-foto", m).innerHTML = it.foto ? `<img src="${it.foto}" alt="">` : "";
+    $(".mi-nome", m).textContent = it.nome;
+    $(".mi-desc", m).textContent = it.desc || "";
+    $(".mi-add", m).innerHTML = cat.adicionais && ADD.length ? `<h4>Adicionais <small>opcional</small></h4>` + ADD.map((a, k) => `<label class="chk"><input type="checkbox" value="${k}"><span>${esc(a.nome)}</span><b>+ ${brl(a.preco)}</b></label>`).join("") : "";
+    $(".mi-obs", m).value = "";
+    $(".mi-obs", m).placeholder = cat.adicionais ? "Ex.: sem cebola, ponto da carne…" : "Alguma observação?";
+    atualizarItem();
+    m.showModal();
+  }
+  function precoAtual() {
+    const ads = $$("#modal-item .mi-add input:checked").map((c) => ADD[+c.value]);
+    return { ads, unit: atual.it.preco + ads.reduce((s, a) => s + a.preco, 0) };
+  }
+  function atualizarItem() {
+    const { unit } = precoAtual();
+    $("#modal-item .mi-qtd").textContent = atual.qtd;
+    $("#modal-item .mi-total").textContent = brl(unit * atual.qtd);
+  }
+  function ligarModalItem() {
+    const m = $("#modal-item");
+    m.addEventListener("change", atualizarItem);
+    $(".mi-menos", m).onclick = () => { atual.qtd = Math.max(1, atual.qtd - 1); atualizarItem(); };
+    $(".mi-mais", m).onclick = () => { atual.qtd = Math.min(20, atual.qtd + 1); atualizarItem(); };
+    $(".mi-ok", m).onclick = () => {
+      const { ads, unit } = precoAtual();
+      sacola.push({ nome: atual.it.nome, ads: ads.map((a) => a.nome), obs: $(".mi-obs", m).value.trim(), unit, qtd: atual.qtd });
+      salvar(); pintarSacola(); m.close(); aviso(atual.it.nome + " adicionado à sacola");
+    };
+    $$("dialog").forEach((d) => d.addEventListener("click", (e) => { if (e.target === d) d.close(); }));
+    $$("[data-fechar]").forEach((b) => (b.onclick = () => b.closest("dialog").close()));
+  }
+
+  /* ---------- sacola ---------- */
+  const total = () => sacola.reduce((s, x) => s + x.unit * x.qtd, 0);
+  const qtdTotal = () => sacola.reduce((s, x) => s + x.qtd, 0);
+  function pintarSacola() {
+    const n = qtdTotal();
+    $$("[data-qtd]").forEach((e) => (e.textContent = n));
+    $$("[data-total]").forEach((e) => (e.textContent = brl(total())));
+    $(".barra").classList.toggle("on", n > 0);
+    $("[data-itens-sacola]").innerHTML = n ? sacola.map((x, i) => `
+      <li><div><strong>${x.qtd}× ${esc(x.nome)}</strong>${x.ads.length ? `<small>+ ${esc(x.ads.join(", "))}</small>` : ""}${x.obs ? `<small>Obs.: ${esc(x.obs)}</small>` : ""}</div>
+      <div class="li-dir"><b>${brl(x.unit * x.qtd)}</b><span class="qt"><button type="button" data-q="${i}:-1" aria-label="Diminuir">−</button><button type="button" data-q="${i}:1" aria-label="Aumentar">+</button></span></div></li>`).join("") : `<li class="vazio">Sua sacola está vazia.</li>`;
+    $("#sacola .finalizar").disabled = !n;
+  }
+  function ligarSacola() {
+    $$("[data-abrir-sacola]").forEach((b) => (b.onclick = () => { pintarSacola(); $("#sacola").showModal(); }));
+    $("[data-itens-sacola]").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-q]"); if (!b) return;
+      const [i, d] = b.dataset.q.split(":").map(Number);
+      sacola[i].qtd += d; if (sacola[i].qtd <= 0) sacola.splice(i, 1);
+      salvar(); pintarSacola();
+    });
+    $("#sacola .finalizar").onclick = () => { $("#sacola").close(); $("#checkout").showModal(); trocarTipo(); };
+    const f = $("#checkout form");
+    f.addEventListener("change", trocarTipo);
+    f.addEventListener("submit", (e) => { e.preventDefault(); enviar(new FormData(f)); });
+  }
+  function trocarTipo() {
+    const f = $("#checkout form");
+    const entrega = f.tipo.value === "entrega";
+    $("[data-endereco-campos]").hidden = !entrega;
+    $$("[data-endereco-campos] input").forEach((i) => (i.required = entrega && i.dataset.obrig !== undefined));
+    $("[data-troco]").hidden = f.pagamento.value !== "Dinheiro";
+    $("#checkout [data-total]").textContent = brl(total());
+  }
+  function enviar(fd) {
+    const linhas = [`*Pedido – ${L.nome}* (pelo site)`, ""];
+    sacola.forEach((x) => {
+      linhas.push(`• ${x.qtd}× ${x.nome} – ${brl(x.unit * x.qtd)}`);
+      if (x.ads.length) linhas.push(`   + ${x.ads.join(", ")}`);
+      if (x.obs) linhas.push(`   Obs.: ${x.obs}`);
+    });
+    linhas.push("", `*Total dos itens: ${brl(total())}*`);
+    if (fd.get("tipo") === "entrega") linhas.push("_Taxa de entrega a confirmar_");
+    linhas.push("", `Nome: ${fd.get("nome")}`);
+    if (fd.get("tipo") === "entrega") {
+      linhas.push(`Entrega: ${fd.get("rua")}, ${fd.get("numero")} – ${fd.get("bairro")}`);
+      if (fd.get("ref")) linhas.push(`Referência: ${fd.get("ref")}`);
+    } else linhas.push("Vou retirar no local");
+    linhas.push(`Pagamento: ${fd.get("pagamento")}`);
+    if (fd.get("pagamento") === "Dinheiro" && fd.get("troco")) linhas.push(`Troco para: R$ ${fd.get("troco")}`);
+    if (fd.get("obs")) linhas.push(`Obs.: ${fd.get("obs")}`);
+    window.open(zapLink(linhas.join("\n")), "_blank");
+  }
+  const zapLink = (msg) => `https://wa.me/${L.whatsapp}?text=${encodeURIComponent(msg)}`;
+
+  let tAviso;
+  function aviso(t) { const a = $(".aviso"); a.textContent = t; a.classList.add("on"); clearTimeout(tAviso); tAviso = setTimeout(() => a.classList.remove("on"), 2200); }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.style.setProperty("--cor", L.cor);
+    document.documentElement.style.setProperty("--cor-txt", L.corTexto || "#111");
+    montarTopo(); montarCardapio(); ligarModalItem(); ligarSacola(); pintarSacola(); pintarStatus();
+    setInterval(pintarStatus, 60000);
+    $("#checkout form").pagamento.innerHTML = L.pagamentos.map((p) => `<option>${p}</option>`).join("");
+    $("[data-ano]").textContent = new Date().getFullYear();
+  });
+  window.Previa = { sacola: () => sacola, total, statusLoja };
+})();
+
+</script>
+</head>
+<body>
+<header class="topo">
+  <a href="#inicio" class="marca"><img data-logo alt=""><span data-nome></span></a>
+  <nav class="menu-topo"><a href="#cardapio">Cardápio</a><a href="#visite">Localização</a></nav>
+  <button type="button" class="btn-sacola" data-abrir-sacola aria-label="Abrir sacola">Sacola <span data-qtd>0</span></button>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero-bg" data-capa aria-hidden="true"></div>
+    <div class="hero-in">
+      <span class="status" data-status></span>
+      <h1 data-slogan></h1>
+      <p data-sub></p>
+      <div class="hero-cta"><a href="#cardapio" class="btn">Ver cardápio</a><a data-zap class="btn btn-linha" target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
+      <a class="nota" data-nota target="_blank" rel="noopener"></a>
+    </div>
+  </section>
+
+  <section class="sec" id="destaques">
+    <h2>Os mais pedidos</h2>
+    <div class="vitrine" data-vitrine></div>
+  </section>
+
+  <section class="sec" id="cardapio">
+    <h2>Cardápio</h2>
+    <nav class="abas" aria-label="Categorias"></nav>
+    <label class="busca"><input type="search" placeholder="Buscar no cardápio…" aria-label="Buscar no cardápio"></label>
+    <div data-lista></div>
+    <p data-vazio hidden class="vazio-busca">Nada encontrado com esse nome.</p>
+    <div class="sem-cardapio" data-semcardapio hidden>
+      <p>O cardápio completo com preços aparece aqui assim que for cadastrado. Por enquanto, fale com a gente:</p>
+      <a data-zap class="btn" target="_blank" rel="noopener">Pedir pelo WhatsApp</a>
+    </div>
+  </section>
+
+  <section class="sec como">
+    <h2>Como pedir</h2>
+    <ol><li><b>1</b>Escolha no cardápio e monte sua sacola</li><li><b>2</b>Diga se é entrega ou retirada e como vai pagar</li><li><b>3</b>O pedido chega pronto no nosso WhatsApp</li></ol>
+  </section>
+
+  <section class="sec visite" id="visite">
+    <div>
+      <h2>Onde estamos</h2>
+      <p class="end"><span data-endereco></span></p>
+      <a data-mapa class="btn" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <h3>Horários</h3>
+      <ul class="horarios" data-horarios></ul>
+      <h3>Pagamento</h3>
+      <p data-pagamentos></p>
+      <p>Instagram: <a data-insta target="_blank" rel="noopener"></a></p>
+    </div>
+    <iframe data-mapa-embed title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+</main>
+
+<footer class="rodape">
+  <p><strong data-nome></strong> · <span data-endereco></span></p>
+  <p class="previa">Prévia de site criada para apresentação · <span data-ano></span></p>
+</footer>
+
+<div class="barra"><button type="button" data-abrir-sacola><span><span data-qtd>0</span> itens</span><b>Ver sacola · <span data-total></span></b></button></div>
+<div class="aviso" role="status"></div>
+
+<dialog id="modal-item" class="modal">
+  <button type="button" class="x" data-fechar aria-label="Fechar">×</button>
+  <div class="mi-foto"></div>
+  <div class="mi-corpo">
+    <h3 class="mi-nome"></h3><p class="mi-desc"></p>
+    <div class="mi-add"></div>
+    <label class="campo"><span>Observação</span><textarea class="mi-obs" rows="2"></textarea></label>
+  </div>
+  <div class="mi-pe">
+    <div class="qt grande"><button type="button" class="mi-menos" aria-label="Diminuir">−</button><span class="mi-qtd">1</span><button type="button" class="mi-mais" aria-label="Aumentar">+</button></div>
+    <button type="button" class="btn mi-ok">Adicionar · <span class="mi-total"></span></button>
+  </div>
+</dialog>
+
+<dialog id="sacola" class="modal">
+  <button type="button" class="x" data-fechar aria-label="Fechar">×</button>
+  <h3>Sua sacola</h3>
+  <ul class="lista-sacola" data-itens-sacola></ul>
+  <div class="tot"><span>Total dos itens</span><b data-total></b></div>
+  <button type="button" class="btn finalizar">Continuar</button>
+</dialog>
+
+<dialog id="checkout" class="modal">
+  <button type="button" class="x" data-fechar aria-label="Fechar">×</button>
+  <h3>Finalizar pedido</h3>
+  <form>
+    <label class="campo"><span>Seu nome</span><input name="nome" required autocomplete="name"></label>
+    <fieldset class="opcoes"><legend>Como prefere receber?</legend>
+      <label><input type="radio" name="tipo" value="entrega" checked> Entrega</label>
+      <label><input type="radio" name="tipo" value="retirada"> Retirar no local</label>
+    </fieldset>
+    <div data-endereco-campos>
+      <label class="campo"><span>Rua</span><input name="rua" data-obrig autocomplete="address-line1"></label>
+      <div class="duas"><label class="campo"><span>Número</span><input name="numero" data-obrig inputmode="numeric"></label><label class="campo"><span>Bairro</span><input name="bairro" data-obrig></label></div>
+      <label class="campo"><span>Ponto de referência</span><input name="ref"></label>
+    </div>
+    <label class="campo"><span>Pagamento</span><select name="pagamento"></select></label>
+    <label class="campo" data-troco hidden><span>Troco para quanto?</span><input name="troco" inputmode="decimal" placeholder="Ex.: 100"></label>
+    <label class="campo"><span>Observações</span><input name="obs"></label>
+    <div class="tot"><span>Total dos itens</span><b data-total></b></div>
+    <p class="mini">A taxa de entrega é confirmada no WhatsApp.</p>
+    <button class="btn" type="submit">Enviar pedido pelo WhatsApp</button>
+  </form>
+</dialog>
+</body>
+</html>
