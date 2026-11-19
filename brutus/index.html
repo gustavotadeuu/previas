@@ -7,6 +7,13 @@
 <title>Brutus Burger – Hamburgueria em Uberaba</title>
 <meta name="description" content="Brutus Burger Hamburgueria – Av. Orlando Rodrigues da Cunha, 1020, Uberaba – MG. Pedidos pelo WhatsApp.">
 <meta name="theme-color" content="#0c0a07">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brutus Burger – Hamburgueria em Uberaba">
+<meta property="og:description" content="Brutus Burger Hamburgueria – Av. Orlando Rodrigues da Cunha, 1020, Uberaba – MG. Pedidos pelo WhatsApp.">
+<meta property="og:image" content="https://previas-sites-one.vercel.app/brutus/img/b5.webp">
+<meta property="og:url" content="https://previas-sites-one.vercel.app/brutus/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Restaurant", "name": "Brutus Burger", "servesCuisine": "Hambúrguer", "url": "https://previas-sites-one.vercel.app/brutus/", "image": "https://previas-sites-one.vercel.app/brutus/img/b5.webp", "telephone": "+5534991180842", "address": {"@type": "PostalAddress", "streetAddress": "Av. Orlando Rodrigues da Cunha, 1020", "addressLocality": "Uberaba", "addressRegion": "MG", "addressCountry": "BR"}, "openingHours": ["Su-Th 18:00-23:00", "Fr-Sa 18:00-23:30"], "sameAs": ["https://instagram.com/brutusburgerhamburgueria"], "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": 140}}</script>
 <link rel="icon" href="img/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -416,6 +423,30 @@ details.cat[open]>summary{border-bottom:1px solid var(--line-soft)}
 
 .hero h1{font-size:clamp(2.6rem,8.4vw,6rem);overflow-wrap:anywhere}
 
+/* como pedir */
+.passos-sec{background:var(--surface);border-block:1px solid var(--line-soft)}
+.passos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;counter-reset:p}
+@media(max-width:820px){.passos{grid-template-columns:1fr}}
+.passos li{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.3rem 1.3rem;overflow:hidden}
+.passo-n{position:absolute;right:.9rem;top:.3rem;font-family:var(--f-display);font-size:3.4rem;color:var(--line);line-height:1}
+.passo-ic{width:48px;height:48px;border-radius:12px;background:var(--gold);color:var(--on-gold);display:grid;place-items:center;margin-bottom:.9rem}
+.passo-ic svg{width:24px;height:24px}
+.passos h3{font-size:1.5rem;margin-bottom:.35rem}
+.passos p{margin:0;color:var(--muted)}
+/* WhatsApp flutuante (quando não há carrinho) */
+.wa-float{position:fixed;z-index:46;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:.5rem;background:#1fae54;color:#fff;text-decoration:none;font-family:var(--f-ui);font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.85rem 1.15rem;border-radius:999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.8)}
+.wa-float svg{width:22px;height:22px}
+.wa-float:hover{background:#25c463}
+/* entrada suave */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+/* cabeçalho mais refinado */
+.hdr{box-shadow:0 1px 0 rgba(255,255,255,.02),0 10px 30px -20px rgba(0,0,0,.9)}
+.card{transition:border-color .2s,transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(0,0,0,.9)}
+.tile{transition:transform .25s}.tile:hover{transform:translateY(-3px)}
+.card.reveal,.tile.reveal{transition:opacity .6s ease,transform .6s ease,border-color .2s,box-shadow .2s}
+
 </style>
 <style>
 :root{--gold:#f5c518;--gold-hi:#ffd84a;--gold-deep:#a8840a;--on-gold:#111;--f-brush:"Anton","Impact",sans-serif}
@@ -524,6 +555,13 @@ details.cat[open]>summary{border-bottom:1px solid var(--line-soft)}
   <div class="wrap" id="menu"></div>
 </section>
 
+<section class="sec passos-sec" id="como-pedir" aria-labelledby="hPassos">
+  <div class="wrap">
+    <div class="sec-head" style="margin-inline:auto;text-align:center;align-items:center"><span class="eyebrow">Simples e rápido</span><h2 id="hPassos">Como pedir</h2></div>
+    <ol class="passos" id="passos"></ol>
+  </div>
+</section>
+
 <section class="sec about" id="sobre" aria-labelledby="hAbout">
   <div class="wrap">
     <div>
@@ -554,6 +592,7 @@ details.cat[open]>summary{border-bottom:1px solid var(--line-soft)}
   </div>
 </footer>
 
+<a class="wa-float" id="waFloat" target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp" hidden><svg><use href="#i-wa"/></svg><span>Pedir no WhatsApp</span></a>
 <div class="fab" id="fab"><button id="fabBtn"><span><span id="fabCount" class="tnum">0</span> itens · Ver carrinho</span><span class="tnum" id="fabTotal">R$ 0,00</span></button></div>
 <div class="scrim" id="scrim"></div>
 
@@ -890,6 +929,24 @@ $('#footContact').innerHTML = `<li><a href="${waLink()}" target="_blank" rel="no
   + `<li><a href="${mapaLink}" target="_blank" rel="noopener">${esc(C.endereco)}${C.cidade ? ' — ' + esc(C.cidade) : ''}</a></li>`
   + (C.instagram ? `<li><a href="${esc(C.instagram)}" target="_blank" rel="noopener">Instagram ${esc(C.instagramUsuario || '')}</a></li>` : '')
   + (C.funcionamento ? `<li>${esc(C.funcionamento)}</li>` : '');
+
+/* ---------- como pedir ---------- */
+const passos = C.passos || (temCardapio
+  ? [['bag', 'Monte seu pedido', 'Abra uma categoria, escolha o lanche e toque em Adicionar. Dá para turbinar com adicionais.'],
+     ['check', 'Revise tudo', 'No carrinho você confere itens, quantidades e valores. Depois informa entrega ou retirada e o pagamento.'],
+     ['wa', 'Envie no WhatsApp', 'O pedido chega pronto e organizado no WhatsApp da loja, que confirma com você.']]
+  : [['wa', 'Chame no WhatsApp', 'Toque em Pedir pelo WhatsApp ou chame no ' + C.whatsappExibicao + '.'],
+     ['bag', 'Faça seu pedido', 'Diga o que vai querer e combine entrega ou retirada.'],
+     ['check', 'Pronto', 'A loja confirma o pedido e o valor com você.']]);
+$('#passos').innerHTML = passos.map((p, i) => `<li><span class="passo-n">${String(i + 1).padStart(2, '0')}</span><span class="passo-ic">${icon(p[0])}</span><h3>${esc(p[1])}</h3><p>${esc(p[2])}</p></li>`).join('');
+if (!temCardapio) { const w = $('#waFloat'); w.href = waLink(`Olá, ${C.nome}! Quero fazer um pedido.`); w.hidden = false; }
+
+/* ---------- animação suave ao rolar ---------- */
+if (!reduce && 'IntersectionObserver' in window) {
+  const alvos = document.querySelectorAll('.sec-head, .tile, .card, .cbox, .facts li, .galeria figure, details.cat, .passos li, .about-photo, .vazio-menu');
+  const ob = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ob.unobserve(e.target); } }), { rootMargin: '0px 0px -6% 0px' });
+  alvos.forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = (i % 4) * 60 + 'ms'; ob.observe(el); });
+}
 
 /* =====================================================================
    CARRINHO — linha: { key, id, qty, adds: {addId: qty}, obs }
