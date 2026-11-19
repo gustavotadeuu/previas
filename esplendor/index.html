@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Esplendor Studio de Beleza – Rio Verde">
+<meta property="og:description" content="Cabelo, manicure, pedicure, maquiagem e sobrancelhas no centro de Rio Verde. Agende pelo WhatsApp.">
+<meta property="og:image" content="https://previas-sites-one.vercel.app/esplendor/img/interior.webp">
+<meta property="og:url" content="https://previas-sites-one.vercel.app/esplendor/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BeautySalon", "name": "Esplendor Studio de Beleza", "url": "https://previas-sites-one.vercel.app/esplendor/", "image": "https://previas-sites-one.vercel.app/esplendor/img/fachada.webp", "telephone": "+556493030964", "address": {"@type": "PostalAddress", "streetAddress": "R. Maj. Oscár Campos, 492 - Centro", "addressLocality": "Rio Verde", "addressRegion": "GO", "addressCountry": "BR"}, "openingHours": ["Mo 08:00-19:00", "Tu-Sa 08:00-18:00"], "sameAs": ["https://instagram.com/esplendorstudiodebeleza"], "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": 97}}</script>
+
 <title>Esplendor Studio de Beleza – Rio Verde</title>
 <meta name="description" content="Salão de beleza no centro de Rio Verde: cabelo, manicure, pedicure, maquiagem e design de sobrancelhas. Agende pelo WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,6 +110,18 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
 .zap-fixo{position:fixed;right:1rem;bottom:1rem;z-index:50;display:flex;align-items:center;gap:.5rem;background:#1f8f4e;color:#fff;text-decoration:none;font-weight:600;padding:.85rem 1.15rem;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
 .zap-fixo svg{width:22px;height:22px;fill:#fff}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.numeros{background:var(--tinta);color:#f4ead8}
+.numeros ul{list-style:none;margin:0 auto;padding:1.6rem clamp(1rem,4vw,2.5rem);max-width:1200px;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:760px){.numeros ul{grid-template-columns:1fr 1fr}}
+.numeros li{border-left:2px solid var(--ouro);padding-left:.9rem}
+.numeros b{display:block;font:600 1.9rem/1.1 "Cormorant Garamond",Georgia,serif;color:var(--ouro2)}
+.numeros span{font-size:.9rem;color:#cfc3b0}
+.topo{box-shadow:0 8px 24px -18px rgba(60,40,10,.35)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.serv,.g,.aval,.espaco figure{transition:box-shadow .25s,transform .25s}
+.aval:hover,.espaco figure:hover{transform:translateY(-3px)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -125,6 +145,15 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
     <img src="img/interior.webp" alt="Interior do salão">
     <img src="img/cachos.webp" alt="Cabelo cacheado finalizado no salão" style="object-position:center 35%">
   </div>
+</section>
+
+<section class="numeros" aria-label="Destaques do salão">
+  <ul>
+    <li><b>5,0 ★</b><span>no Google, com 97 avaliações</span></li>
+    <li><b>Cabelo e unhas</b><span>corte, penteados, manicure e pedicure</span></li>
+    <li><b>Maquiagem</b><span>e design de sobrancelhas</span></li>
+    <li><b>Centro</b><span>R. Maj. Oscár Campos, 492 · Rio Verde</span></li>
+  </ul>
 </section>
 
 <section class="faixa" id="servicos"><div class="sec">
@@ -280,6 +309,11 @@ h2{font-size:clamp(2rem,5vw,2.8rem);text-align:center}
     if (f.get("obs")) linhas.push(`Obs.: ${f.get("obs")}`);
     window.open(zap(linhas.join("\n")), "_blank");
   });
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const alvos = document.querySelectorAll(".sec h2, .g, .galeria img, .espaco figure, .aval, .agenda form, .numeros li, .local iframe");
+    const ob = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); ob.unobserve(e.target); } }), { rootMargin: "0px 0px -6% 0px" });
+    alvos.forEach((el, i) => { el.classList.add("reveal"); el.style.transitionDelay = (i % 4) * 70 + "ms"; ob.observe(el); });
+  }
 })();
 </script>
 </body>
