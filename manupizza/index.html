@@ -455,7 +455,7 @@ a.add{text-decoration:none}
 </style>
 <style>
 :root{--gold:#ff7a1a;--gold-hi:#ff9d4d;--gold-deep:#c2530a;--on-gold:#120800;--bg:#090909;--surface:#131313;--surface-2:#1b1b1b;--line:#332a22;--line-soft:#221d18;--muted:#c9bfb5}
-.hero::before{background:radial-gradient(closest-side,rgba(255,122,26,.22),transparent 70%)}.hero-logo{width:clamp(130px,15vw,180px);border-radius:50%;-webkit-mask-image:none;mask-image:none;box-shadow:0 0 0 3px #ff7a1a,0 18px 40px -12px rgba(255,122,26,.45)}.hero-media{min-height:360px}.reel.a.quadrado,.reel.b.quadrado{aspect-ratio:1/1;border-radius:50%}.reel.a.quadrado{width:52%;right:8%;top:6%;transform:none;border-width:4px}.reel.b.quadrado{width:36%;left:6%;bottom:4%;transform:none;border-color:#fff}.reel-tag{left:50%;bottom:8%;transform:translateX(-50%);white-space:nowrap}.stamp{right:2%;bottom:10%;width:96px;height:96px;transform:rotate(8deg)}.tile{min-height:180px}.tile h3{font-size:1.7rem}@media (max-width:860px){.hero-media{min-height:0;height:min(70vw,290px);max-width:360px}.reel.a.quadrado{width:60%;right:4%;top:0}.reel.b.quadrado{width:40%;left:4%;bottom:0}.reel-tag{font-size:.7rem}.stamp{width:78px;height:78px;right:0;bottom:0}.stamp b{font-size:1.5rem}}@media (max-width:820px){.tiles{grid-template-columns:repeat(3,1fr);gap:.6rem}.tile{min-height:130px}.tile h3{font-size:.95rem}.tile small,.tile .go{display:none}.tile-body{padding:.7rem}}.stars{color:#ff9d4d}
+.hero::before{background:radial-gradient(closest-side,rgba(255,122,26,.22),transparent 70%)}.hero-logo{width:clamp(130px,15vw,180px);border-radius:50%;-webkit-mask-image:none;mask-image:none;box-shadow:0 0 0 3px #ff7a1a,0 18px 40px -12px rgba(255,122,26,.45)}.hero-media{min-height:360px}.reel.a.quadrado,.reel.b.quadrado{aspect-ratio:1/1;border-radius:50%}.reel.a.quadrado{width:52%;right:8%;top:6%;transform:none;border-width:4px}.reel.b.quadrado{width:36%;left:6%;bottom:4%;transform:none;border-color:#fff}.reel-tag{left:50%;bottom:8%;transform:translateX(-50%);white-space:nowrap}.stamp{right:2%;bottom:10%;width:96px;height:96px;transform:rotate(8deg)}.tile{min-height:180px}.tile h3{font-size:1.7rem}@media (max-width:860px){.hero-media{min-height:0;height:min(70vw,290px);max-width:360px}.reel.a.quadrado{width:60%;right:4%;top:0}.reel.b.quadrado{width:40%;left:4%;bottom:0}.reel-tag{font-size:.7rem}.stamp{width:78px;height:78px;right:0;bottom:0}.stamp b{font-size:1.5rem}}@media (max-width:820px){.tiles{grid-template-columns:repeat(3,1fr);gap:.6rem}.tile{min-height:130px}.tile h3{font-size:.95rem}.tile small,.tile .go{display:none}.tile-body{padding:.7rem}}.stars{color:#ff9d4d}@media (max-width:700px){#vitGrid{grid-template-columns:1fr 1fr;gap:.6rem}#vitGrid .card-body{padding:.75rem}#vitGrid .card-body>p:not(.vit-obs){display:none}#vitGrid .vit-obs{font-size:.72rem}#vitGrid h3{font-size:1.05rem}#vitGrid .card-foot{flex-wrap:wrap;gap:.4rem}#vitGrid .add{width:100%;justify-content:center}}
 </style>
 <style>[hidden]{display:none!important}body{margin:0}</style>
 </head>
@@ -531,7 +531,7 @@ a.add{text-decoration:none}
 
 <section class="sec" id="fotos" aria-labelledby="hFotos" hidden>
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Fotos reais</span><h2 id="hFotos">Direto da nossa chapa</h2></div>
+    <div class="sec-head"><span class="eyebrow">Pizzas doces</span><h2 id="hFotos">Para a sobremesa</h2></div>
     <div class="galeria" id="galeria"></div>
   </div>
 </section>
@@ -696,13 +696,19 @@ window.SITE = {
    "tituloDestaque": "quentinha na sua casa",
    "subtitulo": "38 sabores salgados e 10 doces, em tamanho grande ou pequeno. No São Joaquim, em Franca. Monte o pedido aqui e ele chega pronto no WhatsApp da Manu Pizza.",
    "fotoPrincipal": "img/a-moda-da-casa.webp",
-   "fotoSecundaria": "img/kit-kat.webp",
+   "fotoSecundaria": "img/m-m.webp",
    "etiqueta": "À Moda da Casa",
    "carimbo": [
     "Google",
     "5,0",
     "nota"
    ]
+  },
+  "vitrineInfo": {
+   "eyebrow": "Direto do forno",
+   "titulo": "Sabores da casa",
+   "lead": "Fotos do cardápio da Manu Pizza. Toque em Pedir para chamar no WhatsApp, ou monte o pedido completo no cardápio abaixo.",
+   "nav": "Sabores"
   },
   "vitrineEyebrow": "Escolha a sua",
   "vitrineTitulo": "Salgada ou doce?",
@@ -750,22 +756,106 @@ window.SITE = {
   },
   "rodapeFrase": "Pizza artesanal, quentinha na sua casa."
  },
- "galeria": [],
+ "galeria": [
+  {
+   "foto": "img/m-m.webp",
+   "legenda": "M&M's"
+  },
+  {
+   "foto": "img/kit-kat.webp",
+   "legenda": "Kit Kat"
+  },
+  {
+   "foto": "img/kinder-bueno.webp",
+   "legenda": "Kinder Bueno"
+  },
+  {
+   "foto": "img/brigadeiro.webp",
+   "legenda": "Brigadeiro"
+  },
+  {
+   "foto": "img/prestigio.webp",
+   "legenda": "Prestígio"
+  },
+  {
+   "foto": "img/banana-nevada.webp",
+   "legenda": "Banana Nevada"
+  }
+ ],
+ "vitrine": [
+  {
+   "nome": "À Moda da Casa",
+   "imagem": "img/a-moda-da-casa.webp",
+   "descricao": "Molho, muçarela, calabresa, lombo, bacon, milho, Catupiry, orégano e azeitona.",
+   "preco": 70.0,
+   "obs": "Grande. Pequena por R$ 45,00.",
+   "selo": "Da casa"
+  },
+  {
+   "nome": "Portuguesa com Catupiry",
+   "imagem": "img/portuguesa-c-catupiry.webp",
+   "descricao": "Molho, muçarela, presunto, Catupiry, calabresa, palmito, ervilha, ovo, orégano e azeitona.",
+   "preco": 69.0,
+   "obs": "Grande. Pequena por R$ 45,00."
+  },
+  {
+   "nome": "Baiana",
+   "imagem": "img/baiana.webp",
+   "descricao": "Molho, muçarela, calabresa, pimentão picado, ovo, pimenta calabresa, orégano e azeitona.",
+   "preco": 68.0,
+   "obs": "Grande. Pequena por R$ 44,00."
+  },
+  {
+   "nome": "D'Roma",
+   "imagem": "img/d-roma.webp",
+   "descricao": "Molho, bacon, milho, rolinho de presunto com Catupiry, muçarela, orégano e azeitona.",
+   "preco": 77.0,
+   "obs": "Grande. Pequena por R$ 47,00."
+  },
+  {
+   "nome": "Cocoricó",
+   "imagem": "img/cocorico.webp",
+   "descricao": "Molho, frango desfiado, milho, ovo, muçarela, Catupiry e azeitona.",
+   "preco": 67.0,
+   "obs": "Grande. Pequena por R$ 46,00."
+  },
+  {
+   "nome": "Marajá",
+   "imagem": "img/maraja.webp",
+   "descricao": "Molho, muçarela, lombo canadense, Catupiry, palmito, bacon, calabresa, champignon, orégano e azeitona.",
+   "preco": 71.0,
+   "obs": "Grande. Pequena por R$ 46,00."
+  },
+  {
+   "nome": "Mineira",
+   "imagem": "img/mineira.webp",
+   "descricao": "Molho, muçarela, milho, couve refogada ao alho, ovo, bacon, linguiça defumada, orégano e azeitona.",
+   "preco": 71.0,
+   "obs": "Grande. Pequena por R$ 46,00."
+  },
+  {
+   "nome": "Calabresa com Catupiry",
+   "imagem": "img/calabresa-c-catupiry.webp",
+   "descricao": "Molho, muçarela, calabresa, Catupiry, orégano e azeitona.",
+   "preco": 64.0,
+   "obs": "Grande. Pequena por R$ 40,00."
+  }
+ ],
  "tiles": [
   {
    "cat": "salgadas-g",
    "nome": "Salgadas",
-   "img": "img/calabresa.webp"
+   "img": "img/toscana.webp"
   },
   {
    "cat": "doces-g",
    "nome": "Doces",
-   "img": "img/m-m.webp"
+   "img": "img/kit-kat.webp"
   },
   {
    "cat": "salgadas-p",
    "nome": "Pequenas",
-   "img": "img/cocorico.webp"
+   "img": "img/chapeu-de-palha.webp"
   }
  ],
  "categorias": [
